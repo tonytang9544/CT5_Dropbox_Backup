@@ -2,6 +2,10 @@
 
 Backup dropbox files onto partitions with unsupported file systems, such as exFAT.
 
+This script never changes files on the cloud server.
+
+**Note that this script will remove any local file under the specified backup folder. So make sure you select an empty local folder as your local backup folder.**
+
 ## Before running the script
 
 You should register for an app in your Dropbox account by going to [https://www.dropbox.com/developers/apps?_tk=pilot_lp&_ad=topbar4&_camp=myapps](https://www.dropbox.com/developers/apps?_tk=pilot_lp&_ad=topbar4&_camp=myapps).
