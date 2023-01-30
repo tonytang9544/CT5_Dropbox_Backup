@@ -1,0 +1,5 @@
+FILE_SERVER_MODIFIED = "server_modified"
+FILE_CLIENT_MODIFIED = "client_modified"
+FILE_SIZE = "size"
+FILE_CONTENT_HASH = "content_hash"
+FILE_PATH_DISPLAY = "path_display"
