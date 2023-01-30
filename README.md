@@ -1,6 +1,6 @@
 # CT5_Dropbox_Backup
 
-Backup dropbox files onto partitions with unsupported file systems.
+Backup dropbox files onto partitions with unsupported file systems, such as exFAT.
 
 ## Before running the script
 
