@@ -344,7 +344,9 @@ def resolve_difference(server_dict: dict,
 
     download_list.extend(server_files)
 
+    print("Download list:")
     print(download_list)
+    print("Remove list:")
     print(remove_list)
 
     download_hash = {}
