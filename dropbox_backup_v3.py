@@ -3,7 +3,7 @@ import hashlib
 import sys
 import pickle
 import os
-import tkinter.filedialog as tkfd
+import tkinter as tk
 
 import dropbox
 from dropbox.exceptions import AuthError
@@ -344,9 +344,9 @@ def resolve_difference(server_dict: dict,
 
     download_list.extend(server_files)
 
-    print("Download list:")
+    print("Preliminary download list:")
     print(download_list)
-    print("Remove list:")
+    print("Preliminary remove list:")
     print(remove_list)
 
     download_hash = {}
@@ -374,6 +374,8 @@ def resolve_difference(server_dict: dict,
                     move_map[each_file] = new_file_pathname
                     download_list.remove(new_file_lower)
                     remove_list.remove(each_file)
+    print("move map")
+    print(move_map)
 
     return [server_dict[x][DB_attrib.FILE_PATH_DISPLAY] for x in download_list], \
            remove_list, \
@@ -382,7 +384,7 @@ def resolve_difference(server_dict: dict,
 
 def get_valid_token():
     while True:
-        current_token = input("Please copy and paste the token below: \n")
+        current_token = tk.simpledialog.askstring(title="Input Token", prompt="Please enter the access token.")
         with dropbox.Dropbox(current_token) as dbx:
             if is_good_connection(dbx):
                 print("Token validated.")
@@ -418,13 +420,17 @@ def get_valid_server_top_folder(current_token: str):
 
 def main():
     # server_cache_file_name = "server_files.pickle_" + str(datetime.now().date())
-    local_top_folder = tkfd.askdirectory(title="choose the folder to store Dropbox backup")
+    print("please choose the local top folder")
+    local_top_folder = tk.filedialog.askdirectory(title="choose the folder to store Dropbox backup")
 
     if not os.path.isdir(local_top_folder):
         sys.exit("No valid directory chosen. Exit.")
 
+    print(f"folder selected: {local_top_folder}")
+
     print("Building local file cache...")
     local_cache = build_local_cache(local_top_folder)
+
 
     current_token = get_valid_token()
     if current_token == "":
