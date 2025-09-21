@@ -3,7 +3,8 @@ import hashlib
 import sys
 import pickle
 import os
-import tkinter as tk
+import tkinter.filedialog as tkfd
+import tkinter.simpledialog as tksd
 
 import dropbox
 from dropbox.exceptions import AuthError
@@ -384,7 +385,7 @@ def resolve_difference(server_dict: dict,
 
 def get_valid_token():
     while True:
-        current_token = tk.simpledialog.askstring(title="Input Token", prompt="Please enter the access token.")
+        current_token = tksd.askstring(title="Input Token", prompt="Please enter the access token.")
         with dropbox.Dropbox(current_token) as dbx:
             if is_good_connection(dbx):
                 print("Token validated.")
@@ -421,7 +422,7 @@ def get_valid_server_top_folder(current_token: str):
 def main():
     # server_cache_file_name = "server_files.pickle_" + str(datetime.now().date())
     print("please choose the local top folder")
-    local_top_folder = tk.filedialog.askdirectory(title="choose the folder to store Dropbox backup")
+    local_top_folder = tkfd.askdirectory(title="choose the folder to store Dropbox backup")
 
     if not os.path.isdir(local_top_folder):
         sys.exit("No valid directory chosen. Exit.")
